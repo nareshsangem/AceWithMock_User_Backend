@@ -2,42 +2,36 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');   
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser'); // ✅ REQUIRED
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
 const app = express();
 
-// ✅ Middleware
 app.use(cors({
   origin: ["https://acewithmock.netlify.app"],
   credentials: true,
 }));
 
 app.use(bodyParser.json());
-app.use(cookieParser()); // ✅ This line enables req.cookies
+app.use(cookieParser());
 
-// ✅ Import routes
-const userAuthRoutes = require('./routers/userAuthRouter');
-const categoryRoutes = require('./routers/testCategoryRouter');
-const ProtectedRoutes = require('./routers/protectedRouter');
-const testRoutes = require('./routers/testsRouter');
-const userTestsAttempt = require('./routers/userTestsAttempt');
-const ResultsRoutes  = require('./routers/resultRouter');
-const userTracks = require('./routers/userTracks');
-const landingPageRoutes = require('./routers/landingPageRouters');
+app.get("/", (req, res) => {
+  res.send("Backend is live ✅");
+});
 
-// ✅ Use routes
-app.use('/user', userAuthRoutes);
-app.use('/category', categoryRoutes);
-app.use('/protected', ProtectedRoutes);
-app.use('/tests', testRoutes);
-app.use('/attempt', userTestsAttempt);
-app.use('/pdf', ResultsRoutes);
-app.use('/analytics', userTracks);
-app.use('/public', landingPageRoutes);
-// ✅ Start server
-const PORT = 5006;
+// Routes
+app.use('/user', require('./routers/userAuthRouter'));
+app.use('/category', require('./routers/testCategoryRouter'));
+app.use('/protected', require('./routers/protectedRouter'));
+app.use('/tests', require('./routers/testsRouter'));
+app.use('/attempt', require('./routers/userTestsAttempt'));
+app.use('/pdf', require('./routers/resultRouter'));
+app.use('/analytics', require('./routers/userTracks'));
+app.use('/public', require('./routers/landingPageRouters'));
+
+// Use dynamic port for Render
+const PORT = process.env.PORT || 5006;
 app.listen(PORT, () => {
   console.log(`server running at ${PORT}`);
 });
