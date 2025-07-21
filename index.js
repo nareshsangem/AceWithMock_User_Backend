@@ -11,7 +11,7 @@ const app = express();
 // ✅ Middleware
 app.use(cors({
   origin: ["https://acewithmock.netlify.app"],
-  withCredentials: true,
+  credentials: true,
 }));
 
 app.use(bodyParser.json());
