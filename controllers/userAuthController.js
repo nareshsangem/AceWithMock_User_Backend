@@ -233,7 +233,12 @@ const verifyAndResetPassword = async (req, res) => {
 };
 
 const logOuttUser = async (req, res) => {
-  res.clearCookie("user_token");
+  res.clearCookie("user_token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    path: "/", // IMPORTANT: must match how cookie was originally set
+  });
   res.json({ success: true, msg: "Logout successful" });
 };
 
