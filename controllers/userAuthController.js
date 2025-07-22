@@ -45,10 +45,40 @@ const sendOtpToEmailAndMobile = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from:  `"AWM" <${process.env.OTP_EMAIL}>`,
+      from:  `"AWM support" <${process.env.OTP_EMAIL}>`,
       to: email,
-      subject: "Your OTP for FortiTests",
-      text: `Your OTP is ${otp}`,
+      subject: "Your OTP for AWM– Let’s Begin Your Success Journey!",
+      html: `
+    <div style="font-family: 'Segoe UI', sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 10px; padding: 24px;">
+      <h2 style="color: #2874F0; text-align: center;">Welcome to AWM - ACE With Mock 🔥</h2>
+      <p style="font-size: 16px; color: #333;">Dear Aspirant,</p>
+
+      <p style="font-size: 15px; color: #444; line-height: 1.5;">
+        You're just one step away from your dream career. Use the OTP below to verify your account and start preparing smartly with AWM.
+      </p>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <div style="display: inline-block; padding: 16px 32px; background-color: #2874F0; color: white; font-size: 24px; font-weight: bold; border-radius: 8px; letter-spacing: 2px;">
+          ${otp}
+        </div>
+      </div>
+
+      <p style="font-size: 15px; color: #555;">
+        This OTP is valid for <strong>5 minutes</strong>. Please do not share it with anyone.
+      </p>
+
+      <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee;" />
+
+      <p style="font-size: 15px; color: #444; font-style: italic;">
+        “The future depends on what you do today. Keep going, your goals are closer than you think.” 💪
+      </p>
+
+      <p style="margin-top: 30px; font-size: 14px; color: #888;">
+        — Team AWM<br />
+        <a href="https://acewithmock.netlify.app" style="color: #2874F0; text-decoration: none;">Visit our website</a> to continue your preparation journey.
+      </p>
+    </div>
+  `,
     });
 
     // Mock SMS for now
@@ -192,7 +222,42 @@ const sendOtpForPasswordReset = async (req, res) => {
     await sendEmail(
       identifier,
       "AWM Password Reset OTP",
-      `<p>Your OTP for password reset is: <b>${otp}</b>. It is valid for 10 minutes.</p>`
+  `
+  <div style="font-family: 'Segoe UI', sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 10px; padding: 24px;">
+    <h2 style="color: #2874F0; text-align: center;">AWM – Password Reset Request</h2>
+
+    <p style="font-size: 16px; color: #333;">Hi there,</p>
+
+    <p style="font-size: 15px; color: #444;">
+      We received a request to reset your password for your AWM account.
+    </p>
+
+    <p style="font-size: 15px; color: #444;">
+      Use the OTP below to complete the process. This code is valid for <strong>5 minutes</strong>:
+    </p>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <div style="display: inline-block; padding: 16px 32px; background-color: #2874F0; color: white; font-size: 24px; font-weight: bold; border-radius: 8px; letter-spacing: 2px;">
+        ${otp}
+      </div>
+    </div>
+
+    <p style="font-size: 15px; color: #555;">
+      Didn’t request a reset? You can safely ignore this email.
+    </p>
+
+    <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee;" />
+
+    <p style="font-size: 14px; color: #888;">
+      💡 Stay secure: Never share your OTP or password with anyone.
+    </p>
+
+    <p style="margin-top: 30px; font-size: 14px; color: #888;">
+      — Team AWM<br/>
+      <a href="https://acewithmock.netlify.app" style="color: #2874F0; text-decoration: none;">Visit Our AWM </a> for more tools and test prep help.
+    </p>
+  </div>
+  `
     );
   } else {
     
