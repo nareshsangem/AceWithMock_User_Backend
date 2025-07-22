@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, html) => {
   await transporter.sendMail({
-    from: `"FortiTests" <${process.env.OTP_EMAIL}>`,
+    from: `"AWM support" <${process.env.OTP_EMAIL}>`,
     to,
     subject,
     html,

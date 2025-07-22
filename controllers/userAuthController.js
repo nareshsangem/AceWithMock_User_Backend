@@ -46,7 +46,7 @@ const sendOtpToEmailAndMobile = async (req, res) => {
 
     await transporter.sendMail({
       from: `"AWM Support" <${process.env.OTP_EMAIL}>`,
-      to,
+      to: email,
       subject: "Your AWM OTP - Let's Begin Your Success Journey!",
       html: `
       <div style="font-family: 'Segoe UI', sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 10px; padding: 24px;">
