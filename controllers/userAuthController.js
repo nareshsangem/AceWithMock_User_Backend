@@ -45,8 +45,8 @@ const sendOtpToEmailAndMobile = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: `"FortiTests" <${process.env.OTP_EMAIL}>`,
-      to,
+      from:  `"AWM" <${process.env.OTP_EMAIL}>`,
+      to: email,
       subject: "Your OTP for FortiTests",
       text: `Your OTP is ${otp}`,
     });
