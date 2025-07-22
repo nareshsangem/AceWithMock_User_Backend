@@ -191,7 +191,7 @@ const sendOtpForPasswordReset = async (req, res) => {
   if (isEmail) {
     await sendEmail(
       identifier,
-      "FortiTests Password Reset OTP",
+      "AWM Password Reset OTP",
       `<p>Your OTP for password reset is: <b>${otp}</b>. It is valid for 10 minutes.</p>`
     );
   } else {
