@@ -8,7 +8,7 @@ const getSubcategories = async (req, res) => {
     const result = await pool.query(
       `SELECT * FROM subcategories 
        WHERE category_id = $1 AND is_published = true
-       ORDER BY name ASC`,
+       ORDER BY created_at ASC`,
       [categoryId]
     );
     res.json(result.rows);
@@ -21,7 +21,7 @@ const getSubcategories = async (req, res) => {
 const getPublishedSubcategoryIds = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM subcategories WHERE is_published = true ORDER BY created_at DESC`
+      `SELECT * FROM subcategories WHERE is_published = true ORDER BY created_at ASC`
     );
 
     

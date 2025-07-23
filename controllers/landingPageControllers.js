@@ -7,7 +7,7 @@ const getAllCategories = async (req, res) => {
       `SELECT id, name, image_url
        FROM categories
        WHERE is_published = true
-       ORDER BY created_at DESC`
+       ORDER BY created_at ASC`
     );
 
     res.json({ categories: result.rows });
@@ -47,7 +47,7 @@ const getSubcategoriesByCategory = async (req, res) => {
       `SELECT *
        FROM subcategories
        WHERE is_published = true AND category_id = $1
-       ORDER BY created_at DESC`,
+       ORDER BY created_at ASC`,
       [categoryId]
     );
     
@@ -62,7 +62,7 @@ const getSubcategoriesByCategory = async (req, res) => {
 const getPublishedSubcategoryIds = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM subcategories WHERE is_published = true ORDER BY created_at DESC`
+      `SELECT * FROM subcategories WHERE is_published = true ORDER BY created_at ASC`
     );
 
     

@@ -5,7 +5,7 @@ const getTestsBySubcategory = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM tests WHERE subcategory_id = $1 ORDER BY order_number ASC`,
+      `SELECT * FROM tests WHERE subcategory_id = $1 ORDER BY order_number DESC`,
       [subcategoryId]
     );
     

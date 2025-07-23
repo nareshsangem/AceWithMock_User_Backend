@@ -7,9 +7,9 @@ const getTopCategories = async (req, res) => {
       `SELECT id, name, image_url
        FROM categories
        WHERE is_published = true
-       ORDER BY created_at DESC
+       ORDER BY created_at ASC
        LIMIT 12`
-    );
+    );  
     
     res.status(200).json(result.rows);
     
@@ -26,7 +26,7 @@ const getAllCategories = async (req, res) => {
       SELECT id, name, image_url
       FROM categories
       WHERE is_published = true
-      ORDER BY name ASC
+      ORDER BY created_at ASC
     `);
 
     res.json(result.rows);
